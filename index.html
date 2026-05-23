@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="refresh" content="0">
+  <title>NYT Crossword Redirect</title>
+  <script>
+    (function () {
+      var now = new Date();
+      var day = now.getDay();   // 0=Sun … 6=Sat
+      var hour = now.getHours();
+
+      var tomorrow = (day === 6) ? hour >= 18 : hour >= 22;
+
+      if (tomorrow) {
+        now.setDate(now.getDate() + 1);
+      }
+
+      var months = ['Jan','Feb','Mar','Apr','May','Jun',
+                    'Jul','Aug','Sep','Oct','Nov','Dec'];
+      var month = months[now.getMonth()];
+      var day2  = String(now.getDate()).padStart(2, '0');
+      var year2 = String(now.getFullYear()).slice(-2);
+
+      var url = 'https://www.nytimes.com/svc/crosswords/v2/puzzle/print/'
+                + month + day2 + year2 + '.pdf';
+
+      window.location.replace(url);
+    })();
+  </script>
+</head>
+<body>
+  <p>Redirecting to today's NYT crossword…</p>
+</body>
+</html>
