@@ -10,7 +10,8 @@
       var day = now.getDay();   // 0=Sun … 6=Sat
       var hour = now.getHours();
 
-      var tomorrow = (day === 6) ? hour >= 18 : hour >= 22;
+      // Sunday puzzle posts Saturday ~6pm; Monday puzzle posts Sunday ~6pm.
+      var tomorrow = (day === 6 || day === 0) ? hour >= 18 : hour >= 22;
 
       if (tomorrow) {
         now.setDate(now.getDate() + 1);
